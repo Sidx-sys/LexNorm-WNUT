@@ -1,0 +1,43 @@
+EVALUATION:
+ rank    counts    recall
+    1      7313    0.7977
+    2      1855    1
+    3         0    1
+    4         0    1
+    5         0    1
+    6         0    1
+    7         0    1
+    8         0    1
+    9         0    1
+   10         0    1
+
+                      rec   prec    f1
+Error Detection:   0.7977      1 0.8874
+Normalization:     0.7977      1 0.8874
+
+WER:  0.2023
+CER:  0.6091
+
+notFound:           0
+Total:              9168
+Average candidates: 356
+Upperbound:         1 (9168)
+Baseline:           0 (0)
+Testing time:       157
+
+TP 7313
+TN 0
+FP 0
+FN 1855
+Real Prec: 1
+normed: 7313
+Real rec: 0.7977
+needNorm: 9168
+ERR:  0.7977
+
+orig = cand[0]     1855
+orig = cand[1]     0
+orig = cand[other] 0
+
+# Output from command in the monoise/src folder
+#./tmp/bin/binary -r ../data/en/chenli -m TE -b -C -t -d ../data/en -i ../../LexNorm-WNUT/Data/multilexnorm/data/en/dev.norm -o ../../LexNorm-WNUT/monoise_results
