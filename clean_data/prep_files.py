@@ -1,4 +1,5 @@
 from tqdm import tqdm
+import pickle
 import subprocess
 import preprocessor as p
 p.set_options(p.OPT.URL, p.OPT.EMOJI, p.OPT.MENTION,
@@ -17,20 +18,18 @@ with open(data_path, 'r') as f:
     tweet_norm = []
     for line in f:
         if line == '\n':
-            raw.append(p.clean(" ".join(tweet_raw)))
-            norm.append(p.clean(" ".join(tweet_norm)))
+            raw.append(tweet_raw)
+            norm.append(tweet_norm)
             tweet_raw = []
             tweet_norm = []
         else:
-            tokens = line.split()
+            tokens = line.split('\t')
 
             tweet_raw.append(tokens[0])
-            tweet_norm.extend(tokens[1:])
+            tweet_norm.append(tokens[1].strip())
 
-with open('raw', 'w', encoding='utf-8') as f:
-    for s in raw:
-        f.write(s+'\n')
+with open('raw.pkl', 'wb') as f:
+    pickle.dump(raw, f)
 
-with open('gold', 'w', encoding='utf-8') as f:
-    for s in norm:
-        f.write(s+'\n')
+with open('gold.pkl', 'wb') as f:
+    pickle.dump(norm, f)
